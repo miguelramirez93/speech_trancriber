@@ -1,17 +1,11 @@
-from libs.io import Writer
+from libs.io import FileWriter
 from recorders.audio.stream_audio_recorder import StreamAudioRecorder
-from typing import Any
 from transcribers.whisper_transcriber import WhisperTranscriber
-
-
-class StdWriter(Writer):
-    def write(self, data: Any):
-        print(data)
 
 
 if __name__ == "__main__":
     print("Initializing transcriber deps...")
-    transcriber = WhisperTranscriber(StdWriter())
+    transcriber = WhisperTranscriber(FileWriter("./transcription.txt"))
     audio_rec = StreamAudioRecorder()
     try:
         print("Recording started. Press Ctrl+C to stop.")
